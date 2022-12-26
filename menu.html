@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Donations</title>
+    <script src="angular.min.js"></script>
+    <script src="mousumi_lab7.js"></script>
+    <link rel="stylesheet" href="style4.css">
+</head>
+<body ng-app="Packages">
+    <div ng-controller="Packagesctrl">
+        <header>
+            <div class="navbar">
+                <ul>
+                    <li><a href="*">Home</a></li>
+                    <li><a href="*">Donation Details</a></li>
+                    <li><a href="*">Cookies Page</a></li>
+                    <li id="login"><a href="*">Register</a></li>
+                </ul>
+            </div>
+        </header>
+        <br>
+        Rows to display:  <input type="number" step="1" min="0" max="6" ng-model="rowlimit"/><br><br>
+        Search:  <input type="text" placeholder="Search for item" ng-model="search"><br><br>
+        Enter the number of characters:  <input type="text" placeholder="Enter no. of characters" ng-model="limit"><br><br>
+        <table>
+            <tr>
+                <th>Name of Donor
+                    <br>
+                    <input type="text" ng-model="search.name" placeholder="Search Donor's Name">
+                </th>
+                <th>Date of Donation
+                    <br>
+                    <input type="text" ng-model="search.doa" placeholder="Search Date of Donation">
+                </th>
+                <th>Location of the NGO
+                    <br>
+                    <input type="text" ng-model="search.location" placeholder="Search Location">
+                </th>
+                <th>Rating
+                    <br>
+                    <input type="text" ng-model="search.rating" placeholder="Search Rating">
+                </th>
+                <th>Donation in Rupees
+                    <br>
+                    <input type="text" ng-model="search.price" placeholder="Search Amount">
+                </th>
+            </tr>
+            <tbody>
+                <tr ng-repeat="htl in items|limitTo:rowlimit|filter:search">
+                    <td>{{htl.name|namefilter:limit}}</td>
+                    <td>{{htl.doa|date:"dd/MM/yyyy"}}</td>
+                    <td>{{htl.location|uppercase}}</td>
+                    <td>{{htl.rating|lowercase}}</td>
+                    <td>{{htl.price|number:0}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>
